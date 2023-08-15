@@ -18,20 +18,26 @@ let counterO = 0;
 let counter = 0;
 
 let statusOfGame = "";
+let delay = 500;
 
 const boxes = document.querySelectorAll(".box");
 
+boxes.forEach((box) => {
+  box.addEventListener("click", (e) => {
+    if (e.currentTarget.innerHTML === "") {
+      e.currentTarget.innerHTML = turn === "x" ? xElement : oElement;
+      checkWinner();
+      turn = turn == "x" ? "o" : "x";
+    }
+  });
+});
+
 function startGame() {
+  turn = "x";
+  statusOfGame = "";
   counter = 0;
   boxes.forEach((box) => {
     box.innerHTML = "";
-    box.addEventListener("click", (e) => {
-      if (e.currentTarget.innerHTML === "") {
-        e.currentTarget.innerHTML = turn === "x" ? xElement : oElement;
-        checkWinner();
-        turn = turn == "x" ? "o" : "x";
-      }
-    });
   });
 }
 
@@ -62,7 +68,7 @@ function checkWinner() {
       setTimeout(() => {
         popup(statusOfGame);
         startGame();
-      }, 1000);
+      }, delay);
     } else if (boxes[0].innerHTML === oElement) {
       counterO++;
       oWin.innerHTML = counterO;
@@ -70,11 +76,11 @@ function checkWinner() {
       setTimeout(() => {
         popup(statusOfGame);
         startGame();
-      }, 1000);
+      }, delay);
     }
   }
   // Seconed Row
-  else if (
+  if (
     boxes[3].innerHTML === boxes[4].innerHTML &&
     boxes[3].innerHTML === boxes[5].innerHTML
   ) {
@@ -85,7 +91,7 @@ function checkWinner() {
       setTimeout(() => {
         popup(statusOfGame);
         startGame();
-      }, 1000);
+      }, delay);
     } else if (boxes[3].innerHTML === oElement) {
       counterO++;
       oWin.innerHTML = counterO;
@@ -93,11 +99,11 @@ function checkWinner() {
       setTimeout(() => {
         popup(statusOfGame);
         startGame();
-      }, 1000);
+      }, delay);
     }
   }
   // Third Row
-  else if (
+  if (
     boxes[6].innerHTML === boxes[7].innerHTML &&
     boxes[6].innerHTML === boxes[8].innerHTML
   ) {
@@ -108,7 +114,7 @@ function checkWinner() {
       setTimeout(() => {
         popup(statusOfGame);
         startGame();
-      }, 1000);
+      }, delay);
     } else if (boxes[6].innerHTML === oElement) {
       counterO++;
       oWin.innerHTML = counterO;
@@ -116,11 +122,11 @@ function checkWinner() {
       setTimeout(() => {
         popup(statusOfGame);
         startGame();
-      }, 1000);
+      }, delay);
     }
   }
   // First Column
-  else if (
+  if (
     boxes[0].innerHTML === boxes[3].innerHTML &&
     boxes[0].innerHTML === boxes[6].innerHTML
   ) {
@@ -131,7 +137,7 @@ function checkWinner() {
       setTimeout(() => {
         popup(statusOfGame);
         startGame();
-      }, 1000);
+      }, delay);
     } else if (boxes[0].innerHTML === oElement) {
       counterO++;
       oWin.innerHTML = counterO;
@@ -139,11 +145,11 @@ function checkWinner() {
       setTimeout(() => {
         popup(statusOfGame);
         startGame();
-      }, 1000);
+      }, delay);
     }
   }
   // Seconed Column
-  else if (
+  if (
     boxes[1].innerHTML === boxes[4].innerHTML &&
     boxes[1].innerHTML === boxes[7].innerHTML
   ) {
@@ -154,7 +160,7 @@ function checkWinner() {
       setTimeout(() => {
         popup(statusOfGame);
         startGame();
-      }, 1000);
+      }, delay);
     } else if (boxes[1].innerHTML === oElement) {
       counterO++;
       oWin.innerHTML = counterO;
@@ -162,11 +168,11 @@ function checkWinner() {
       setTimeout(() => {
         popup(statusOfGame);
         startGame();
-      }, 1000);
+      }, delay);
     }
   }
   // Third Column
-  else if (
+  if (
     boxes[2].innerHTML === boxes[5].innerHTML &&
     boxes[2].innerHTML === boxes[8].innerHTML
   ) {
@@ -177,7 +183,7 @@ function checkWinner() {
       setTimeout(() => {
         popup(statusOfGame);
         startGame();
-      }, 1000);
+      }, delay);
     } else if (boxes[2].innerHTML === oElement) {
       counterO++;
       oWin.innerHTML = counterO;
@@ -185,11 +191,11 @@ function checkWinner() {
       setTimeout(() => {
         popup(statusOfGame);
         startGame();
-      }, 1000);
+      }, delay);
     }
   }
   // First Diagonal
-  else if (
+  if (
     boxes[0].innerHTML === boxes[4].innerHTML &&
     boxes[0].innerHTML === boxes[8].innerHTML
   ) {
@@ -208,11 +214,11 @@ function checkWinner() {
       setTimeout(() => {
         popup(statusOfGame);
         startGame();
-      }, 1000);
+      }, delay);
     }
   }
   // Seconed Diagonal
-  else if (
+  if (
     boxes[2].innerHTML === boxes[4].innerHTML &&
     boxes[2].innerHTML === boxes[6].innerHTML
   ) {
@@ -223,7 +229,7 @@ function checkWinner() {
       setTimeout(() => {
         popup(statusOfGame);
         startGame();
-      }, 1000);
+      }, delay);
     } else if (boxes[2].innerHTML === oElement) {
       counterO++;
       oWin.innerHTML = counterO;
@@ -231,9 +237,12 @@ function checkWinner() {
       setTimeout(() => {
         popup(statusOfGame);
         startGame();
-      }, 1000);
+      }, delay);
     }
-  } else {
+  }
+
+  // Draw
+  if (!statusOfGame) {
     counter = 0;
     boxes.forEach((box) => (box.innerHTML != "" ? counter++ : null));
     if (counter === boxes.length) {
@@ -241,7 +250,7 @@ function checkWinner() {
       setTimeout(() => {
         popup(statusOfGame);
         startGame();
-      }, 1000);
+      }, delay);
     }
   }
 }
@@ -258,5 +267,5 @@ function popup(status) {
 
   document.getElementById("game-container").append(span);
 
-  setTimeout(() => span.remove(), 2000);
+  setTimeout(() => span.remove(), delay + 1000);
 }
