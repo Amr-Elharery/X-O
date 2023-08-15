@@ -1,0 +1,209 @@
+/* Root Variables */
+:root{
+    --main-color:#00BDAD ;
+    --main-color-alt:#00A193 ;
+    --main-transition: 0.3s;
+}
+
+/* Global Rules */
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.c-black{
+    color: #545454;
+}
+
+.c-white{
+    color: #fff;
+}
+
+
+
+.container {
+	padding-inline: 15px;
+	margin-inline: auto;
+}
+/* Small */
+@media (min-width: 768px) {
+	.container {
+			width: 750px;
+	}
+}
+/* Medium */
+@media (min-width: 992px) {
+	.container {
+			width: 970px;
+	}
+}
+/* Large */
+@media (min-width: 1200px) {
+	.container {
+			width: 1170px;
+	}
+}
+
+
+.page{
+    min-height: 100vh;
+    background-color: var(--main-color);
+    overflow: hidden;
+}
+
+
+/* Header */
+header{
+    padding: 20px;
+
+}
+
+header .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
+
+
+
+/* Result */
+.result{
+    font-size: 40px;
+    margin: 50px;
+    padding-bottom: 5px;
+}
+
+.result .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.result #btn{
+    cursor: pointer;
+    transition: var(--main-transition);
+    border-radius: 6px;
+    padding: 10px 15px;
+    background-color: var(--main-color);
+    outline: none;
+    border: 1px solid #777;
+    font-size: 20px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    -webkit-transition: var(--main-transition);
+    -moz-transition: var(--main-transition);
+    -ms-transition: var(--main-transition);
+    -o-transition: var(--main-transition);
+}
+.result #btn:hover{
+    background-color: var(--main-color-alt);
+}
+
+
+/* Game */
+
+.game .container{
+    position: relative;
+    width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+}
+
+.game .box{
+    position: relative;
+    transition: var(--main-transition);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 150px;
+    height: 150px;
+    font-size: 80px;
+    -webkit-transition: var(--main-transition);
+    -moz-transition: var(--main-transition);
+    -ms-transition: var(--main-transition);
+    -o-transition: var(--main-transition);
+}
+
+.game .box:hover{
+    cursor: pointer;
+    background-color: var(--main-color-alt);
+}
+
+#box-1::before,
+#box-2::before{
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 0;
+    width: 8px;
+    height: 450px;
+    background-color: var(--main-color-alt);
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+}
+
+#box-1::after,
+#box-4::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: calc(100% * 3);
+    height: 8px;
+    background-color: var(--main-color-alt);
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+}
+
+/* Popup */
+
+.popup{
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    padding: 30px 50px;
+    font-size:50px;
+    background-color:#fff;
+    border-radius:6px;
+}
+
+/* Media */
+
+
+@media (width < 768px){
+    .result{
+        font-size: 30px;
+        margin: 30px;
+    }
+    .result #btn{
+        padding: 5px 10px;
+        font-size: 16px;
+    }
+    .game .container{
+        width: 300px;
+    }
+    .game .box{
+        flex: 1 0 75px;
+        font-size: 60px;
+    }
+    .popup{
+        font-size: 30px;
+        padding: 20px 25px;
+    }
+}
